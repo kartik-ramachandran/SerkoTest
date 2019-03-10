@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">      
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+    $(document).ready(function(){
+
+        $('input[type=submit]').click(function (e) {
+
+            $.ajax({
+                type: 'POST',
+                url: 'FetchClientData',
+                data: {
+                    'xmlData': $('#Message').val()
+                },
+                dataType: "text",
+                success: function (resultData)
+                {
+                    //have to refactor
+                    var result = JSON.parse(resultData);
+
+                    $('.client-result').empty();
+
+                    if (result.clientData.HasError != undefined && result.clientData.HasError != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('Please check your message again')
+                            .appendTo($('.client-result'));
+
+                        return;
+                    }
+
+
+                    if (result.clientData.CostCentre != undefined && result.clientData.CostCentre != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('Cost centre: ' + result.clientData.CostCentre)
+                            .appendTo($('.client-result'));
+                    }
+
+                    if (result.clientData.Date != undefined && result.clientData.Date != null) {
+                        $("<div>")
+                            .addClass('date')
+                            .text('Date: ' + result.clientData.Date)
+                            .appendTo($('.client-result'));
+                    }
+                    if (result.clientData.Description != undefined && result.clientData.Description != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('Description: ' + result.clientData.Description)
+                            .appendTo($('.client-result'));
+                    }
+                    if (result.clientData.GstCalculated != undefined && result.clientData.GstCalculated != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('GstCalculated: ' +result.clientData.GstCalculated)
+                            .appendTo($('.client-result'));
+                    }
+                    if (result.clientData.PaymentMethod != undefined && result.clientData.PaymentMethod != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('PaymentMethod: ' +result.clientData.PaymentMethod)
+                            .appendTo($('.client-result'));
+                    }
+                    if (result.clientData.TotaWithoutGST != undefined && result.clientData.TotaWithoutGST != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('TotaWithoutGST: ' +result.clientData.TotaWithoutGST)
+                            .appendTo($('.client-result'));
+                    }
+                    if (result.clientData.Total != undefined && result.clientData.Total != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('TotaWithoutGST: ' +result.clientData.Total)
+                            .appendTo($('.client-result'));
+                    }
+                    if (result.clientData.Vendor != undefined && result.clientData.Vendor != null) {
+                        $("<div>")
+                            .addClass('cost_centre')
+                            .text('Vendor: ' +result.clientData.Total)
+                            .appendTo($('.client-result'));
+                    }          
+                }
+            });
+
+        });
+
+    });
+    </script>
+
+</body>
+</html>

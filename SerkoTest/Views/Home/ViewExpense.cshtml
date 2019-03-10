@@ -1,0 +1,87 @@
+﻿@model SerkoTest.Models.DomainToModel.ExpenseModel
+
+<h2>View Expense Data</h2>
+
+<div>
+    <h4>ExpenseModel</h4>
+    <hr />
+
+    @if (!Model.HasError)
+    {
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CostCentre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostCentre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GstCalculated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GstCalculated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotaWithoutGST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotaWithoutGST)
+        </dd>
+
+    </dl>
+    }
+    else
+    {
+        <p>Check you message again.</p>
+    }
+</div>
+<p>
+    
+    @Html.ActionLink("Back", "Index")
+</p>
